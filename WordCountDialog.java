@@ -54,6 +54,7 @@ public class WordCountDialog extends JDialog {
         setTitle("Word Count");
         setBounds(100, 100, 300, 250);
         this.editorPane = editorPane;
+        final JEditorPane dummyEditor = this.editorPane;
         this.editorPane.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void changedUpdate(DocumentEvent e) {
@@ -65,8 +66,8 @@ public class WordCountDialog extends JDialog {
             }
             @Override
             public void removeUpdate(DocumentEvent e) {
-                int selectionStart = editorPane.getSelectionStart();
-                editorPane.select(selectionStart, selectionStart);
+                int selectionStart = dummyEditor.getSelectionStart();
+                dummyEditor.select(selectionStart, selectionStart);
                 update();
             }
         });
@@ -196,11 +197,14 @@ public class WordCountDialog extends JDialog {
      * @param text String to count non-whitespace characters of.
      */
     public String getNonWhiteCharCount(String text) {
+        int n = 0;
         if (text.matches("^\\s*$")) return String.valueOf(0);
         else {
             String[] words = text.trim().split("\\s+");
-            String newtext = String.join("", words);
-            return getCharCount(newtext);
+            for (int i=0;i<words.length;i++){
+                n += words[i].length();
+            }
+            return NumberFormat.getIntegerInstance().format(n);
         }
     }
 
