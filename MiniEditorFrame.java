@@ -72,11 +72,11 @@ public class MiniEditorFrame extends JFrame {
 
         JPanel countPanel = new JPanel();
         countPanel.setLayout(new BorderLayout(0, 0));
-        JLabel countLabel = new JLabel("Word Count:");
+        JLabel countLabel = new JLabel("Word Count: ");
         countPanel.add(countLabel, BorderLayout.WEST);
         countNum = new JLabel();
         updateWordCount();
-        countPanel.add(countNum, BorderLayout.EAST);
+        countPanel.add(countNum, BorderLayout.CENTER);
         contentPane.add(countPanel, BorderLayout.SOUTH);
 
         editorPane.getDocument().addDocumentListener(new DocumentListener() {
