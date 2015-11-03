@@ -1,3 +1,5 @@
+package minEd;
+
 import java.awt.EventQueue;
 
 /**
