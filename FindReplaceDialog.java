@@ -49,7 +49,7 @@ public class FindReplaceDialog extends JDialog {
         ActionListener findReplaceActionListener = new FindReplaceActionListener();
 
         setTitle("Find / Replace");
-        setBounds(100, 100, 446, 126);
+        setBounds(100, 100, 400, 130);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setAlignmentY(Component.TOP_ALIGNMENT);
         contentPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -58,8 +58,8 @@ public class FindReplaceDialog extends JDialog {
         contentPanel.setLayout(new GridLayout(2, 2, 0, 0));
 
         JLabel findLabel = new JLabel("Find:");
-        findLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        findLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
+        findLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        findLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         findLabel.setAlignmentY(Component.TOP_ALIGNMENT);
         contentPanel.add(findLabel);
 
@@ -71,8 +71,8 @@ public class FindReplaceDialog extends JDialog {
         findField.setColumns(10);
 
         JLabel replaceLabel = new JLabel("Replace With:");
-        replaceLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        replaceLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
+        replaceLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        replaceLabel.setHorizontalTextPosition(SwingConstants.LEFT);
         replaceLabel.setAlignmentY(Component.TOP_ALIGNMENT);
         contentPanel.add(replaceLabel);
 
@@ -84,7 +84,7 @@ public class FindReplaceDialog extends JDialog {
         replaceField.setColumns(10);
 
         JPanel buttonPane = new JPanel();
-        buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        buttonPane.setLayout(new FlowLayout(FlowLayout.CENTER));
         getContentPane().add(buttonPane, BorderLayout.SOUTH);
 
         JButton findButton = new JButton("Find");
