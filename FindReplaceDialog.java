@@ -51,35 +51,21 @@ public class FindReplaceDialog extends JDialog {
         setTitle("Find / Replace");
         setBounds(100, 100, 400, 130);
         getContentPane().setLayout(new BorderLayout());
-        contentPanel.setAlignmentY(Component.TOP_ALIGNMENT);
-        contentPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
         contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
         getContentPane().add(contentPanel, BorderLayout.CENTER);
         contentPanel.setLayout(new GridLayout(2, 2, 0, 0));
 
         JLabel findLabel = new JLabel("Find:");
-        findLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        findLabel.setHorizontalTextPosition(SwingConstants.LEFT);
-        findLabel.setAlignmentY(Component.TOP_ALIGNMENT);
         contentPanel.add(findLabel);
 
         findField = new JTextField();
-        findField.setAlignmentY(Component.TOP_ALIGNMENT);
-        findField.setAlignmentX(Component.LEFT_ALIGNMENT);
-        findField.setText("");
         contentPanel.add(findField);
         findField.setColumns(10);
 
         JLabel replaceLabel = new JLabel("Replace With:");
-        replaceLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        replaceLabel.setHorizontalTextPosition(SwingConstants.LEFT);
-        replaceLabel.setAlignmentY(Component.TOP_ALIGNMENT);
         contentPanel.add(replaceLabel);
 
         replaceField = new JTextField();
-        replaceField.setAlignmentY(Component.TOP_ALIGNMENT);
-        replaceField.setAlignmentX(Component.LEFT_ALIGNMENT);
-        replaceField.setText("");
         contentPanel.add(replaceField);
         replaceField.setColumns(10);
 
