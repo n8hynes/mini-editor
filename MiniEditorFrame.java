@@ -204,7 +204,7 @@ public class MiniEditorFrame extends JFrame {
 
     // For Assignment 6:
     public int getWordCount(String text) {
-        if (text.equals("")) return 0;
+        if (text.matches("^\\s*$")) return 0;
         else {
             String[] words = text.trim().split("\\s+");
             return words.length;
