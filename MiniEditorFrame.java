@@ -25,6 +25,7 @@ import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.StyledEditorKit;
 
 /**
  * An editor pane to create a "mini-editor". Includes file and edit menus,
@@ -75,6 +76,8 @@ public class MiniEditorFrame extends JFrame {
         findAndReplace = new FindReplaceDialog(editorPane);
 
         //-----Assignment 6 Start-----//
+
+        editorPane.setEditorKit(new StyledEditorKit());
 
         wordCount = new WordCountDialog(editorPane);
 
