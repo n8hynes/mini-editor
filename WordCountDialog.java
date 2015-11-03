@@ -14,6 +14,17 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+/**
+ * Dialog to display word count statistics for MinEd.
+ * Displays total count of words, characters, and non-whitespace characters
+ * as well as selected portions of those.
+ * 
+ * For Assignment 6
+ * 
+ * @author enzo
+ * 
+ * @version 2015-11-03
+ */
 public class WordCountDialog extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
@@ -25,6 +36,14 @@ public class WordCountDialog extends JDialog {
     private JLabel totalCharNum;
     private JLabel totalNonWhiteCharNum;
 
+    /**
+     * Create the dialog.
+     * 
+     * @param editorPane JEditorPane instance from the main editor JFrame
+     *                   so that WordCountDialog can access the text in
+     *                   the panel in the other container, and update
+     *                   accordingly.
+     */
     public WordCountDialog(JEditorPane editorPane) {
 
         setResizable(false);
@@ -145,6 +164,11 @@ public class WordCountDialog extends JDialog {
 
     }
 
+    /**
+     * Returns the number of words in the text, as a String.
+     * 
+     * @param text String to count words of.
+     */
     public String getWordCount(String text) {
         if (text.matches("^\\s*$")) return String.valueOf(0);
         else {
@@ -153,10 +177,20 @@ public class WordCountDialog extends JDialog {
         }
     }
 
+    /**
+     * Returns the number of characters in the text, as a String.
+     * 
+     * @param text String to count characters of.
+     */
     public String getCharCount(String text) {
         return String.valueOf(text.length());
     }
 
+    /**
+     * Returns the number of non-whitespace characters in the text, as a String.
+     * 
+     * @param text String to count non-whitespace characters of.
+     */
     public String getNonWhiteCharCount(String text) {
         if (text.matches("^\\s*$")) return String.valueOf(0);
         else {
@@ -166,6 +200,9 @@ public class WordCountDialog extends JDialog {
         }
     }
 
+    /**
+     * Updates all values in the dialog.
+     */
     public void update() {
         updateSelectedNum();
         updateTotalNum();
@@ -175,29 +212,47 @@ public class WordCountDialog extends JDialog {
         updateTotalNonWhiteCharNum();
     }
 
+    /**
+     * Updates value of Selected Word Count
+     */
     public void updateSelectedNum() {
         if (editorPane.getSelectedText() == null) selectedNum.setText("0");
         else selectedNum.setText(getWordCount(editorPane.getSelectedText()));
     }
 
+    /**
+     * Updates value of Total Word Count
+     */
     public void updateTotalNum() {
         totalNum.setText(getWordCount(editorPane.getText()));
     }
 
+    /**
+     * Updates value of Selected Char Count
+     */
     public void updateSelectedCharNum() {
         if (editorPane.getSelectedText() == null) selectedCharNum.setText("0");
         else selectedCharNum.setText(getCharCount(editorPane.getSelectedText()));
     }
 
+    /**
+     * Updates value of Selected Non-Whitespace Char Count
+     */
     public void updateSelectedNonWhiteCharNum() {
         if (editorPane.getSelectedText() == null) selectedNonWhiteCharNum.setText("0");
         else selectedNonWhiteCharNum.setText(getNonWhiteCharCount(editorPane.getSelectedText()));
     }
 
+    /**
+     * Updates value of Total Char Count
+     */
     public void updateTotalCharNum() {
         totalCharNum.setText(getCharCount(editorPane.getText()));
     }
 
+    /**
+     * Updates value of Total Non-Whitespace Char Count
+     */
     public void updateTotalNonWhiteCharNum() {
         totalNonWhiteCharNum.setText(getNonWhiteCharCount(editorPane.getText()));
     }

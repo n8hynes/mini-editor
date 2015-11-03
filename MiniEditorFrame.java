@@ -36,7 +36,7 @@ import javax.swing.event.DocumentListener;
  * Continued/added to by
  * @author enzo
  * 
- * @version 2015-11-02
+ * @version 2015-11-03
  */
 public class MiniEditorFrame extends JFrame {
 
@@ -45,8 +45,13 @@ public class MiniEditorFrame extends JFrame {
     private JFileChooser fileChooser = new JFileChooser();
     private JMenuItem saveAsItem;
     private FindReplaceDialog findAndReplace;
-    private JLabel countNum; // A6
+
+    //-----Assignment 6 Start-----//
+
+    private JLabel countNum;
     private WordCountDialog wordCount;
+
+    //------Assignment 6 End------//
 
     /**
      * Create the frame.
@@ -68,9 +73,10 @@ public class MiniEditorFrame extends JFrame {
 
         scrollPane.setViewportView(editorPane);
         findAndReplace = new FindReplaceDialog(editorPane);
-        wordCount = new WordCountDialog(editorPane);
 
         //-----Assignment 6 Start-----//
+
+        wordCount = new WordCountDialog(editorPane);
 
         JPanel countPanel = new JPanel();
         countPanel.setLayout(new BorderLayout(0, 0));
@@ -220,7 +226,8 @@ public class MiniEditorFrame extends JFrame {
 
     }
 
-    // For Assignment 6:
+    //-----Assignment 6 Start-----//
+
     public int getWordCount(String text) {
         if (text.matches("^\\s*$")) return 0;
         else {
@@ -237,5 +244,7 @@ public class MiniEditorFrame extends JFrame {
             countNum.setText(String.valueOf(getWordCount(editorPane.getSelectedText()) + " of " + getWordCount(editorPane.getText())));
         }
     }
+
+    //------Assignment 6 End------//
 
 }
