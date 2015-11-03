@@ -45,7 +45,8 @@ public class MiniEditorFrame extends JFrame {
     private JFileChooser fileChooser = new JFileChooser();
     private JMenuItem saveAsItem;
     private FindReplaceDialog findAndReplace;
-    private JLabel countNum;
+    private JLabel countNum; // A6
+    private WordCountDialog wordCount;
 
     /**
      * Create the frame.
@@ -199,6 +200,23 @@ public class MiniEditorFrame extends JFrame {
             }
         });
         editMenu.add(findReplaceItem);
+
+        //-----Assignment 6 Start-----//
+
+        JMenu toolMenu = new JMenu("Tools");
+        toolMenu.setMnemonic(KeyEvent.VK_T);
+        menuBar.add(toolMenu);
+
+        JMenuItem wordCountItem = new JMenuItem("Word Count", KeyEvent.VK_W);
+        wordCountItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                wordCount = new WordCountDialog(editorPane);
+                wordCount.setVisible(true);
+            }
+        });
+        toolMenu.add(wordCountItem);
+
+        //------Assignment 6 End------//
 
     }
 
