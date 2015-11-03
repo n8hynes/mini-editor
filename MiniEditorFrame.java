@@ -68,6 +68,7 @@ public class MiniEditorFrame extends JFrame {
 
         scrollPane.setViewportView(editorPane);
         findAndReplace = new FindReplaceDialog(editorPane);
+        wordCount = new WordCountDialog(editorPane);
 
         //-----Assignment 6 Start-----//
 
@@ -210,7 +211,6 @@ public class MiniEditorFrame extends JFrame {
         JMenuItem wordCountItem = new JMenuItem("Word Count", KeyEvent.VK_W);
         wordCountItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                wordCount = new WordCountDialog(editorPane);
                 wordCount.setVisible(true);
             }
         });
