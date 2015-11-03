@@ -28,7 +28,7 @@ import javax.swing.border.EmptyBorder;
  * 
  * @version 2015-11-02
  */
-public class FindReplaceDialog extends JDialog{
+public class FindReplaceDialog extends JDialog {
 
     private final JPanel contentPanel = new JPanel();
     private JTextField findField;
@@ -42,7 +42,7 @@ public class FindReplaceDialog extends JDialog{
      *                   so that FindReplaceDialog can make text changes
      *                   directly on the other Container.
      */
-    public FindReplaceDialog(JEditorPane editorPane){
+    public FindReplaceDialog(JEditorPane editorPane) {
 
         setResizable(false);
         this.editorPane = editorPane;
@@ -101,8 +101,8 @@ public class FindReplaceDialog extends JDialog{
         buttonPane.add(replaceAllButton);
 
         JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent arg0){
+        closeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
                 setVisible(false);
             }
         });
@@ -116,14 +116,14 @@ public class FindReplaceDialog extends JDialog{
      * @author brown
      * @author enzo
      */
-    class FindReplaceActionListener implements ActionListener{
+    class FindReplaceActionListener implements ActionListener {
         private String findItem;
         private String replaceItem;
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             findItem = findField.getText();
             replaceItem = replaceField.getText();
-            switch(e.getActionCommand()){
+            switch(e.getActionCommand()) {
                 case "Replace All":
                     editorPane.setText(editorPane.getText().replaceAll(findItem, replaceItem));
                     break;
@@ -131,8 +131,8 @@ public class FindReplaceDialog extends JDialog{
                     findnext();
                     break;
                 case "Replace":
-                    if(editorPane.getSelectedText() != null){
-                        if(editorPane.getSelectedText().equals(findItem)){
+                    if(editorPane.getSelectedText() != null) {
+                        if(editorPane.getSelectedText().equals(findItem)) {
                             editorPane.replaceSelection(replaceItem);
                         }
                     }
@@ -146,14 +146,14 @@ public class FindReplaceDialog extends JDialog{
          * and make it the editorPane's current selection. Searches from the current selection
          * until the end of text, with a notification on hitting the end of the text.
          */
-        private void findnext(){
+        private void findnext() {
             int startIndex = editorPane.getSelectionEnd();
             int foundIndex = editorPane.getText().indexOf(findItem, startIndex);
-            if (foundIndex<0){
+            if (foundIndex < 0) {
                 JOptionPane.showMessageDialog(FindReplaceDialog.this, findItem + ": End of text reached");
-                editorPane.select(0,0);
+                editorPane.select(0, 0);
             }
-            else{
+            else {
                 editorPane.select(foundIndex, foundIndex + findItem.length());
                 editorPane.setFocusable(true);
             }

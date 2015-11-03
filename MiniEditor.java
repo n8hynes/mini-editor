@@ -11,18 +11,18 @@ import java.awt.EventQueue;
  * 
  * @version 2015-11-02
  */
-public class MiniEditor{
+public class MiniEditor {
     /**
      * Launch the application
      */
-    public static void main(String[] args){
-        EventQueue.invokeLater(new Runnable(){
-            public void run(){
-                try{
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
                     MiniEditorFrame frame = new MiniEditorFrame();
                     frame.setVisible(true);
                 }
-                catch(Exception e){
+                catch(Exception e) {
                     e.printStackTrace();
                 }
             }

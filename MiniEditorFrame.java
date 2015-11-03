@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
-
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -34,7 +33,7 @@ import javax.swing.border.EmptyBorder;
  * 
  * @version 2015-11-02
  */
-public class MiniEditorFrame extends JFrame{
+public class MiniEditorFrame extends JFrame {
 
     private JPanel contentPane;
     private JEditorPane editorPane;
@@ -45,7 +44,7 @@ public class MiniEditorFrame extends JFrame{
     /**
      * Create the frame.
      */
-    public MiniEditorFrame(){
+    public MiniEditorFrame() {
 
         setTitle("MinEd");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +52,7 @@ public class MiniEditorFrame extends JFrame{
 
         // Create the content pane:
         contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5,5,5));
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
         JScrollPane scrollPane = new JScrollPane();
@@ -71,11 +70,11 @@ public class MiniEditorFrame extends JFrame{
         menuBar.add(fileMenu);
 
         JMenuItem openItem = new JMenuItem("Open...", KeyEvent.VK_O);
-        openItem.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                if (fileChooser.showOpenDialog(MiniEditorFrame.this)==JFileChooser.APPROVE_OPTION){
+        openItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (fileChooser.showOpenDialog(MiniEditorFrame.this)==JFileChooser.APPROVE_OPTION) {
                     File f = fileChooser.getSelectedFile();
-                    try{
+                    try {
                         FileReader r = new FileReader(f);
                         int filelength = (int) f.length();
                         char[] buffer = new char[filelength];
@@ -84,7 +83,7 @@ public class MiniEditorFrame extends JFrame{
                         editorPane.setText(new String(buffer));
                         setTitle("MinEd (" + f.getName() + ")");
                     }
-                    catch(IOException ioe){
+                    catch(IOException ioe) {
                         JOptionPane.showMessageDialog(MiniEditorFrame.this, "Error. Can't load file.");
                     }
                 }
@@ -94,22 +93,22 @@ public class MiniEditorFrame extends JFrame{
 
         JMenuItem saveItem = new JMenuItem("Save", KeyEvent.VK_S);
         
-        ActionListener saveListener = new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        ActionListener saveListener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 File f = fileChooser.getSelectedFile();
-                if (e.getSource().equals(saveAsItem) || f == null){
-                    if (fileChooser.showSaveDialog(MiniEditorFrame.this) != JFileChooser.APPROVE_OPTION){
+                if (e.getSource().equals(saveAsItem) || f == null) {
+                    if (fileChooser.showSaveDialog(MiniEditorFrame.this) != JFileChooser.APPROVE_OPTION) {
                         return;
                     }
                     f = fileChooser.getSelectedFile();
                 }
-                try{
+                try {
                     FileWriter writer = new FileWriter(f);
                     writer.write(editorPane.getText());
                     writer.close();
                     MiniEditorFrame.this.setTitle("MinEd (" + f.getName() + ")");
                 }
-                catch (IOException ioe){
+                catch (IOException ioe) {
                     JOptionPane.showMessageDialog(MiniEditorFrame.this, "Error. Can't write file.");
                 }
             }
@@ -126,32 +125,32 @@ public class MiniEditorFrame extends JFrame{
         menuBar.add(editMenu);
 
         JMenuItem copyItem = new JMenuItem("Copy", KeyEvent.VK_C);
-        copyItem.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        copyItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 editorPane.copy();
             }
         });
         editMenu.add(copyItem);
 
         JMenuItem cutItem = new JMenuItem("Cut", KeyEvent.VK_U);
-        cutItem.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        cutItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 editorPane.cut();
             }
         });
         editMenu.add(cutItem);
 
         JMenuItem pasteItem = new JMenuItem("Paste", KeyEvent.VK_P);
-        pasteItem.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        pasteItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 editorPane.paste();
             }
         });
         editMenu.add(pasteItem);
 
         JMenuItem findReplaceItem = new JMenuItem("Find/Replace", KeyEvent.VK_F);
-        findReplaceItem.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e){
+        findReplaceItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 findAndReplace.setVisible(true);
             }
         });
