@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -20,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  * An editor pane to create a "mini-editor". Includes file and edit menus,
@@ -58,8 +61,36 @@ public class MiniEditorFrame extends JFrame {
         JScrollPane scrollPane = new JScrollPane();
         contentPane.add(scrollPane, BorderLayout.CENTER);
         editorPane = new JEditorPane();
+
         scrollPane.setViewportView(editorPane);
         findAndReplace = new FindReplaceDialog(editorPane);
+
+        //-----Assignment 6 Start-----//
+
+        JPanel countPanel = new JPanel();
+        countPanel.setLayout(new BorderLayout(0, 0));
+        JLabel countLabel = new JLabel("Word Count:");
+        countPanel.add(countLabel, BorderLayout.WEST);
+        JLabel countNum = new JLabel(String.valueOf(getWordCount()));
+        countPanel.add(countNum, BorderLayout.EAST);
+        contentPane.add(countPanel, BorderLayout.SOUTH);
+
+        editorPane.getDocument().addDocumentListener(new DocumentListener(){
+            @Override
+            public void changedUpdate(DocumentEvent e){
+                countNum.setText(String.valueOf(getWordCount()));
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e){
+                countNum.setText(String.valueOf(getWordCount()));
+            }
+            @Override
+            public void removeUpdate(DocumentEvent e){
+                countNum.setText(String.valueOf(getWordCount()));
+            }
+        });
+
+        //------Assignment 6 End------//
 
         // Create the menu bar:
         JMenuBar menuBar = new JMenuBar();
@@ -156,6 +187,15 @@ public class MiniEditorFrame extends JFrame {
         });
         editMenu.add(findReplaceItem);
 
+    }
+
+    // For Assignment 6:
+    public int getWordCount(){
+        if (editorPane.getText().equals("")) return 0;
+        else{
+            String[] words = editorPane.getText().trim().split("\\s+");
+            return words.length;
+        }
     }
 
 }
