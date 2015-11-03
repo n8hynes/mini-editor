@@ -21,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -43,6 +45,7 @@ public class MiniEditorFrame extends JFrame {
     private JFileChooser fileChooser = new JFileChooser();
     private JMenuItem saveAsItem;
     private FindReplaceDialog findAndReplace;
+    private JLabel countNum;
 
     /**
      * Create the frame.
@@ -71,22 +74,32 @@ public class MiniEditorFrame extends JFrame {
         countPanel.setLayout(new BorderLayout(0, 0));
         JLabel countLabel = new JLabel("Word Count:");
         countPanel.add(countLabel, BorderLayout.WEST);
-        JLabel countNum = new JLabel(String.valueOf(getWordCount()));
+        countNum = new JLabel();
+        updateWordCount();
         countPanel.add(countNum, BorderLayout.EAST);
         contentPane.add(countPanel, BorderLayout.SOUTH);
 
-        editorPane.getDocument().addDocumentListener(new DocumentListener(){
+        editorPane.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void changedUpdate(DocumentEvent e){
-                countNum.setText(String.valueOf(getWordCount()));
+            public void changedUpdate(DocumentEvent e) {
+                updateWordCount();
             }
             @Override
-            public void insertUpdate(DocumentEvent e){
-                countNum.setText(String.valueOf(getWordCount()));
+            public void insertUpdate(DocumentEvent e) {
+                updateWordCount();
             }
             @Override
-            public void removeUpdate(DocumentEvent e){
-                countNum.setText(String.valueOf(getWordCount()));
+            public void removeUpdate(DocumentEvent e) {
+                int selectionStart = editorPane.getSelectionStart();
+                editorPane.select(selectionStart, selectionStart);
+                updateWordCount();
+            }
+        });
+
+        editorPane.addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e){
+                updateWordCount();
             }
         });
 
@@ -190,11 +203,20 @@ public class MiniEditorFrame extends JFrame {
     }
 
     // For Assignment 6:
-    public int getWordCount(){
-        if (editorPane.getText().equals("")) return 0;
-        else{
-            String[] words = editorPane.getText().trim().split("\\s+");
+    public int getWordCount(String text) {
+        if (text.equals("")) return 0;
+        else {
+            String[] words = text.trim().split("\\s+");
             return words.length;
+        }
+    }
+
+    public void updateWordCount(){
+        if (editorPane.getSelectedText()==null){
+            countNum.setText(String.valueOf(getWordCount(editorPane.getText())));
+        }
+        else{
+            countNum.setText(String.valueOf(getWordCount(editorPane.getSelectedText()) + " of " + getWordCount(editorPane.getText())));
         }
     }
 
