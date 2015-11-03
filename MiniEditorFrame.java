@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import java.text.NumberFormat;
+
 import javax.swing.JEditorPane;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -231,20 +233,20 @@ public class MiniEditorFrame extends JFrame {
 
     //-----Assignment 6 Start-----//
 
-    public int getWordCount(String text) {
-        if (text.matches("^\\s*$")) return 0;
+    public String getWordCount(String text) {
+        if (text.matches("^\\s*$")) return "0";
         else {
             String[] words = text.trim().split("\\s+");
-            return words.length;
+            return NumberFormat.getIntegerInstance().format(words.length);
         }
     }
 
     public void updateWordCount(){
         if (editorPane.getSelectedText()==null){
-            countNum.setText(String.valueOf(getWordCount(editorPane.getText())));
+            countNum.setText(getWordCount(editorPane.getText()));
         }
         else{
-            countNum.setText(String.valueOf(getWordCount(editorPane.getSelectedText()) + " of " + getWordCount(editorPane.getText())));
+            countNum.setText(getWordCount(editorPane.getSelectedText()) + " (of " + getWordCount(editorPane.getText()) + ")");
         }
     }
 

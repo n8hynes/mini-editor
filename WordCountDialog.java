@@ -3,6 +3,8 @@ import java.awt.Component;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 
+import java.text.NumberFormat;
+
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
 import javax.swing.JLabel;
@@ -173,7 +175,7 @@ public class WordCountDialog extends JDialog {
         if (text.matches("^\\s*$")) return String.valueOf(0);
         else {
             String[] words = text.trim().split("\\s+");
-            return String.valueOf(words.length);
+            return NumberFormat.getIntegerInstance().format(words.length);
         }
     }
 
@@ -183,7 +185,7 @@ public class WordCountDialog extends JDialog {
      * @param text String to count characters of.
      */
     public String getCharCount(String text) {
-        return String.valueOf(text.length());
+        return NumberFormat.getIntegerInstance().format(text.length());
     }
 
     /**
