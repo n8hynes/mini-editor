@@ -15,8 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  * Dialog to display word count statistics for MinEd.
@@ -55,22 +53,7 @@ public class WordCountDialog extends JDialog {
         setBounds(100, 100, 300, 250);
         this.editorPane = editorPane;
         final JEditorPane dummyEditor = this.editorPane;
-        this.editorPane.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                update();
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                update();
-            }
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                int selectionStart = dummyEditor.getSelectionStart();
-                dummyEditor.select(selectionStart, selectionStart);
-                update();
-            }
-        });
+
         this.editorPane.addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e){

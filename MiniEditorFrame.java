@@ -27,8 +27,6 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.text.StyledEditorKit;
 
 /**
@@ -93,23 +91,6 @@ public class MiniEditorFrame extends JFrame {
         updateWordCount();
         countPanel.add(countNum, BorderLayout.CENTER);
         contentPane.add(countPanel, BorderLayout.SOUTH);
-
-        editorPane.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                updateWordCount();
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                updateWordCount();
-            }
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                int selectionStart = editorPane.getSelectionStart();
-                editorPane.select(selectionStart, selectionStart);
-                updateWordCount();
-            }
-        });
 
         editorPane.addCaretListener(new CaretListener() {
             @Override
