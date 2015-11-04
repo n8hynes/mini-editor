@@ -52,7 +52,6 @@ public class WordCountDialog extends JDialog {
         setTitle("Word Count");
         setBounds(100, 100, 300, 250);
         this.editorPane = editorPane;
-        final JEditorPane dummyEditor = this.editorPane;
 
         this.editorPane.addCaretListener(new CaretListener() {
             @Override
