@@ -14,6 +14,7 @@ import java.awt.EventQueue;
  * @version 2015-11-02
  */
 public class MiniEditor {
+
     /**
      * Launch the application
      */

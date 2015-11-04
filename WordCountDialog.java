@@ -55,7 +55,7 @@ public class WordCountDialog extends JDialog {
 
         this.editorPane.addCaretListener(new CaretListener() {
             @Override
-            public void caretUpdate(CaretEvent e){
+            public void caretUpdate(CaretEvent e) {
                 update();
             }
         });
@@ -183,7 +183,7 @@ public class WordCountDialog extends JDialog {
         if (text.matches("^\\s*$")) return String.valueOf(0);
         else {
             String[] words = text.trim().split("\\s+");
-            for (int i=0;i<words.length;i++){
+            for (int i = 0; i < words.length; i++) {
                 n += words[i].length();
             }
             return NumberFormat.getIntegerInstance().format(n);

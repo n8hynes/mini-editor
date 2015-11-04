@@ -94,7 +94,7 @@ public class MiniEditorFrame extends JFrame {
 
         editorPane.addCaretListener(new CaretListener() {
             @Override
-            public void caretUpdate(CaretEvent e){
+            public void caretUpdate(CaretEvent e) {
                 updateWordCount();
             }
         });
@@ -112,7 +112,7 @@ public class MiniEditorFrame extends JFrame {
         JMenuItem openItem = new JMenuItem("Open...", KeyEvent.VK_O);
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                if (fileChooser.showOpenDialog(MiniEditorFrame.this)==JFileChooser.APPROVE_OPTION) {
+                if (fileChooser.showOpenDialog(MiniEditorFrame.this) == JFileChooser.APPROVE_OPTION) {
                     File f = fileChooser.getSelectedFile();
                     try {
                         FileReader r = new FileReader(f);
@@ -224,11 +224,11 @@ public class MiniEditorFrame extends JFrame {
         }
     }
 
-    public void updateWordCount(){
-        if (editorPane.getSelectedText()==null){
+    public void updateWordCount() {
+        if (editorPane.getSelectedText() == null) {
             countNum.setText(getWordCount(editorPane.getText()));
         }
-        else{
+        else {
             countNum.setText(getWordCount(editorPane.getSelectedText()) + " (of " + getWordCount(editorPane.getText()) + ")");
         }
     }
