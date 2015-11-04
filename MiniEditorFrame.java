@@ -1,4 +1,4 @@
-package minEd;
+package MinEd;
 
 import java.awt.BorderLayout;
 
